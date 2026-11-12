@@ -1,0 +1,476 @@
+ব<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luxury CV Builder - Form</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0B1120;
+            --card-bg: #131C31;
+            --gold: #D4AF37;
+            --gold-hover: #F3C64F;
+            --text-light: #F8FAFC;
+            --text-muted: #94A3B8;
+            --border: #26334D;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 35px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 20px;
+            position: relative;
+        }
+
+        .header h1 {
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            font-size: 32px;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .btn-clear {
+            margin-top: 12px;
+            background: rgba(239, 68, 68, 0.15);
+            color: #fca5a5;
+            border: 1px solid rgba(239, 68, 68, 0.4);
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-clear:hover {
+            background: #ef4444;
+            color: white;
+        }
+
+        .section-title {
+            color: var(--gold);
+            font-size: 16px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin: 25px 0 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+            font-weight: 500;
+        }
+
+        input, textarea {
+            width: 100%;
+            background: #0B1120;
+            border: 1px solid var(--border);
+            color: var(--text-light);
+            padding: 12px 15px;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        input::placeholder, textarea::placeholder {
+            color: #475569;
+            opacity: 1;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 90px;
+        }
+
+        .dynamic-box {
+            background: rgba(11, 17, 32, 0.6);
+            border: 1px dashed var(--border);
+            padding: 18px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .btn-add {
+            background: transparent;
+            color: var(--gold);
+            border: 1px solid var(--gold);
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-add:hover {
+            background: rgba(212, 175, 55, 0.1);
+        }
+
+        .btn-remove {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: #ef4444;
+            color: white;
+            border: none;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        .photo-preview {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--gold);
+            margin-top: 10px;
+            display: none;
+        }
+
+        .btn-submit {
+            width: 100%;
+            background: linear-gradient(135deg, #D4AF37 0%, #AA8215 100%);
+            color: #0B1120;
+            border: none;
+            padding: 16px;
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 30px;
+            transition: 0.3s;
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            background: linear-gradient(135deg, #F3C64F 0%, #C59B27 100%);
+        }
+
+        @media (max-width: 600px) {
+            .grid-2 { grid-template-columns: 1fr; }
+            .container { padding: 25px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>LUXURY CV STUDIO</h1>
+        <p>Fill in your executive details to generate an A4 print-ready luxury resume</p>
+        <button type="button" class="btn-clear" onclick="clearSavedData()">Clear All Fields</button>
+    </div>
+
+    <form id="cvForm">
+        <!-- Personal Info -->
+        <div class="section-title">Personal & Contact Details</div>
+        <div class="grid-2">
+            <div class="form-group">
+                <label>Full Name *</label>
+                <input type="text" id="fullName" placeholder="e.g. MIRAZ HOSSAIN APON" required>
+            </div>
+            <div class="form-group">
+                <label>Job Title / Designation *</label>
+                <input type="text" id="designation" placeholder="e.g. Accounting & Sales Executive" required>
+            </div>
+        </div>
+
+        <div class="grid-2">
+            <div class="form-group">
+                <label>Phone Number *</label>
+                <input type="text" id="phone" placeholder="e.g. +880 1853-184181" required>
+            </div>
+            <div class="form-group">
+                <label>Email Address</label>
+                <input type="email" id="email" placeholder="e.g. miraz.apon@example.com">
+            </div>
+        </div>
+
+        <div class="grid-2">
+            <div class="form-group">
+                <label>Full Address *</label>
+                <input type="text" id="address" placeholder="e.g. Narayanganj, Chitrashal, Kushumbag, Kutubpur-1421" required>
+            </div>
+            <div class="form-group">
+                <label>Profile Photo (Square/Portrait)</label>
+                <input type="file" id="photoInput" accept="image/*">
+                <img id="photoPreview" class="photo-preview" alt="Preview">
+            </div>
+        </div>
+
+        <!-- Profile & Objective -->
+        <div class="section-title">Executive Summary & Objective</div>
+        <div class="form-group">
+            <label>Professional Profile *</label>
+            <textarea id="profile" placeholder="Write a brief summary about your work experience, strengths, and professional skills..." required></textarea>
+        </div>
+        <div class="form-group">
+            <label>Career Objective</label>
+            <textarea id="objective" placeholder="Write your career goal and how you can contribute to the organization..."></textarea>
+        </div>
+
+        <!-- Work Experience -->
+        <div class="section-title">Work Experience</div>
+        <div id="experienceContainer"></div>
+        <button type="button" class="btn-add" onclick="addExperience()">+ Add Another Experience</button>
+
+        <!-- Education -->
+        <div class="section-title">Education</div>
+        <div id="educationContainer"></div>
+        <button type="button" class="btn-add" onclick="addEducation()">+ Add Another Education</button>
+
+        <!-- Sidebar Lists -->
+        <div class="section-title">Skills, Languages & Hobbies (Comma Separated)</div>
+        <div class="form-group">
+            <label>Core Skills</label>
+            <input type="text" id="skills" placeholder="e.g. Accounting, Microsoft Excel, Microsoft Word, Fast Typing, Customer Relations">
+        </div>
+        <div class="grid-2">
+            <div class="form-group">
+                <label>Languages</label>
+                <input type="text" id="languages" placeholder="e.g. Bangla (Native), English (Fluent), Hindi (Conversational)">
+            </div>
+            <div class="form-group">
+                <label>Hobbies & Interests</label>
+                <input type="text" id="hobbies" placeholder="e.g. Photography, Gardening, Painting, Drawing, Gaming">
+            </div>
+        </div>
+
+        <button type="submit" class="btn-submit">Generate Luxury CV ➔</button>
+    </form>
+</div>
+
+<script>
+    let base64Photo = "";
+
+    // Convert uploaded photo to Base64
+    document.getElementById('photoInput').addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                base64Photo = event.target.result;
+                const preview = document.getElementById('photoPreview');
+                preview.src = base64Photo;
+                preview.style.display = 'block';
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+
+    function addExperience(data = { role: '', company: '', desc: '' }, showRemove = true) {
+        const container = document.getElementById('experienceContainer');
+        const div = document.createElement('div');
+        div.className = 'dynamic-box exp-item';
+        div.innerHTML = `
+            ${showRemove ? '<button type="button" class="btn-remove" onclick="this.parentElement.remove()">Remove</button>' : ''}
+            <div class="grid-2">
+                <div class="form-group">
+                    <label>Role / Position</label>
+                    <input type="text" class="exp-role" value="${escapeHtml(data.role)}" placeholder="e.g. Showroom Sales Assistant">
+                </div>
+                <div class="form-group">
+                    <label>Company / Duration</label>
+                    <input type="text" class="exp-company" value="${escapeHtml(data.company)}" placeholder="e.g. Fashion Clothing Store • 3 Years">
+                </div>
+            </div>
+            <div class="form-group" style="margin-bottom:0;">
+                <label>Key Responsibilities</label>
+                <input type="text" class="exp-desc" value="${escapeHtml(data.desc)}" placeholder="e.g. Managed showroom customers, handled daily sales billing, inventory tracking...">
+            </div>
+        `;
+        container.appendChild(div);
+    }
+
+    function addEducation(data = { degree: '', inst: '' }, showRemove = true) {
+        const container = document.getElementById('educationContainer');
+        const div = document.createElement('div');
+        div.className = 'dynamic-box edu-item';
+        div.innerHTML = `
+            ${showRemove ? '<button type="button" class="btn-remove" onclick="this.parentElement.remove()">Remove</button>' : ''}
+            <div class="grid-2">
+                <div class="form-group">
+                    <label>Degree / Exam Name</label>
+                    <input type="text" class="edu-degree" value="${escapeHtml(data.degree)}" placeholder="e.g. Secondary School Certificate (S.S.C)">
+                </div>
+                <div class="form-group">
+                    <label>Institution & Passing Year</label>
+                    <input type="text" class="edu-inst" value="${escapeHtml(data.inst)}" placeholder="e.g. Kutubpur High School • Business Studies">
+                </div>
+            </div>
+        `;
+        container.appendChild(div);
+    }
+
+    // Prevent HTML quote breaking when restoring values
+    function escapeHtml(text) {
+        if (!text) return '';
+        return text
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+    }
+
+    // Restore saved data on page load (when returning via Edit Information)
+    window.addEventListener('DOMContentLoaded', () => {
+        const rawData = localStorage.getItem('luxuryCVData');
+        if (rawData) {
+            const data = JSON.parse(rawData);
+
+            document.getElementById('fullName').value = data.fullName || '';
+            document.getElementById('designation').value = data.designation || '';
+            document.getElementById('phone').value = data.phone || '';
+            document.getElementById('email').value = data.email || '';
+            document.getElementById('address').value = data.address || '';
+            document.getElementById('profile').value = data.profile || '';
+            document.getElementById('objective').value = data.objective || '';
+
+            if (data.photo) {
+                base64Photo = data.photo;
+                const preview = document.getElementById('photoPreview');
+                preview.src = base64Photo;
+                preview.style.display = 'block';
+            }
+
+            if (data.experiences && data.experiences.length > 0) {
+                data.experiences.forEach((exp, index) => {
+                    addExperience(exp, index !== 0);
+                });
+            } else {
+                addExperience({ role: '', company: '', desc: '' }, false);
+            }
+
+            if (data.educations && data.educations.length > 0) {
+                data.educations.forEach((edu, index) => {
+                    addEducation(edu, index !== 0);
+                });
+            } else {
+                addEducation({ degree: '', inst: '' }, false);
+            }
+
+            document.getElementById('skills').value = (data.skills || []).join(', ');
+            document.getElementById('languages').value = (data.languages || []).join(', ');
+            document.getElementById('hobbies').value = (data.hobbies || []).join(', ');
+        } else {
+            // Default empty fields with placeholders only
+            addExperience({ role: '', company: '', desc: '' }, false);
+            addEducation({ degree: '', inst: '' }, false);
+        }
+    });
+
+    function clearSavedData() {
+        if (confirm('Are you sure you want to clear all fields?')) {
+            localStorage.removeItem('luxuryCVData');
+            location.reload();
+        }
+    }
+
+    document.getElementById('cvForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const experiences = [];
+        document.querySelectorAll('.exp-item').forEach(item => {
+            const role = item.querySelector('.exp-role').value.trim();
+            const company = item.querySelector('.exp-company').value.trim();
+            const desc = item.querySelector('.exp-desc').value.trim();
+            if (role || company || desc) experiences.push({ role, company, desc });
+        });
+
+        const educations = [];
+        document.querySelectorAll('.edu-item').forEach(item => {
+            const degree = item.querySelector('.edu-degree').value.trim();
+            const inst = item.querySelector('.edu-inst').value.trim();
+            if (degree || inst) educations.push({ degree, inst });
+        });
+
+        const cvData = {
+            fullName: document.getElementById('fullName').value,
+            designation: document.getElementById('designation').value,
+            phone: document.getElementById('phone').value,
+            email: document.getElementById('email').value,
+            address: document.getElementById('address').value,
+            photo: base64Photo,
+            profile: document.getElementById('profile').value,
+            objective: document.getElementById('objective').value,
+            experiences: experiences,
+            educations: educations,
+            skills: document.getElementById('skills').value.split(',').map(s => s.trim()).filter(Boolean),
+            languages: document.getElementById('languages').value.split(',').map(s => s.trim()).filter(Boolean),
+            hobbies: document.getElementById('hobbies').value.split(',').map(s => s.trim()).filter(Boolean)
+        };
+
+        localStorage.setItem('luxuryCVData', JSON.stringify(cvData));
+        window.location.href = 'output.html';
+    });
+</script>
+
+</body>
+</html>

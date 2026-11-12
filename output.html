@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Executive Luxury CV - Output</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #0F172A;
+            --navy-light: #1E293B;
+            --gold: #C59B27;
+            --gold-light: #E5C158;
+            --cream: #FAF9F6;
+            --text-dark: #1E293B;
+            --text-muted: #475569;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #1E293B;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 30px 15px;
+        }
+
+        /* Action Bar (Hidden in Print) */
+        .action-bar {
+            width: 210mm;
+            max-width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #0F172A;
+            padding: 15px 25px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            border: 1px solid #334155;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            border: none;
+            transition: 0.3s;
+        }
+
+        .btn-back {
+            background: transparent;
+            color: #E2E8F0;
+            border: 1px solid #475569;
+        }
+
+        .btn-back:hover {
+            background: #1E293B;
+        }
+
+        .btn-print {
+            background: linear-gradient(135deg, #D4AF37 0%, #AA8215 100%);
+            color: #0F172A;
+            font-weight: 700;
+        }
+
+        .btn-print:hover {
+            filter: brightness(1.1);
+        }
+
+        /* Exact A4 Paper Setup */
+        .a4-page {
+            width: 210mm;
+            height: 297mm;
+            background: #FFFFFF;
+            display: grid;
+            grid-template-columns: 74mm 136mm;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.65);
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Left Luxury Navy Sidebar */
+        .sidebar {
+            background: var(--navy);
+            color: #F8FAFC;
+            padding: 35px 24px;
+            display: flex;
+            flex-direction: column;
+            border-right: 3px solid var(--gold);
+            position: relative;
+        }
+
+        .photo-frame {
+            width: 138px;
+            height: 158px;
+            margin: 0 auto 28px;
+            border: 3px solid var(--gold);
+            padding: 4px;
+            background: var(--navy-light);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+        }
+
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .side-section {
+            margin-bottom: 24px;
+        }
+
+        .side-title {
+            font-family: 'Cinzel', serif;
+            color: var(--gold-light);
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-bottom: 1px solid rgba(197, 155, 39, 0.4);
+            padding-bottom: 6px;
+            margin-bottom: 12px;
+        }
+
+        .contact-item {
+            margin-bottom: 11px;
+            font-size: 11.5px;
+            line-height: 1.5;
+            color: #E2E8F0;
+        }
+
+        .contact-label {
+            display: block;
+            color: var(--gold-light);
+            font-weight: 600;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .side-list {
+            list-style: none;
+        }
+
+        .side-list li {
+            font-size: 12px;
+            color: #E2E8F0;
+            margin-bottom: 7px;
+            padding-left: 14px;
+            position: relative;
+            line-height: 1.4;
+        }
+
+        .side-list li::before {
+            content: "◆";
+            color: var(--gold);
+            font-size: 8px;
+            position: absolute;
+            left: 0;
+            top: 2px;
+        }
+
+        /* Right Main Content Area */
+        .main-content {
+            background: var(--cream);
+            padding: 40px 36px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        /* Subtle Top Gold Accent Bar */
+        .main-content::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: linear-gradient(90deg, var(--gold), var(--navy));
+        }
+
+        .header-box {
+            border-bottom: 2px solid #E2E8F0;
+            padding-bottom: 20px;
+            margin-bottom: 24px;
+        }
+
+        .full-name {
+            font-family: 'Cinzel', serif;
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--navy);
+            letter-spacing: 1.5px;
+            line-height: 1.2;
+            margin-bottom: 6px;
+        }
+
+        .designation {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 2.5px;
+        }
+
+        .main-section {
+            margin-bottom: 22px;
+        }
+
+        .main-title {
+            font-family: 'Cinzel', serif;
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--navy);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .main-title::after {
+            content: "";
+            flex: 1;
+            height: 1.5px;
+            background: linear-gradient(90deg, var(--gold), transparent);
+        }
+
+        .summary-text {
+            font-size: 12px;
+            line-height: 1.65;
+            color: var(--text-muted);
+            text-align: justify;
+        }
+
+        /* Timeline Items for Experience & Education */
+        .timeline-item {
+            position: relative;
+            padding-left: 16px;
+            border-left: 2px solid var(--gold);
+            margin-bottom: 15px;
+        }
+
+        .timeline-item::before {
+            content: "";
+            width: 8px;
+            height: 8px;
+            background: var(--navy);
+            border: 2px solid var(--gold);
+            border-radius: 50%;
+            position: absolute;
+            left: -6px;
+            top: 4px;
+        }
+
+        .item-title {
+            font-size: 13.5px;
+            font-weight: 700;
+            color: var(--navy);
+        }
+
+        .item-subtitle {
+            font-size: 11.5px;
+            font-weight: 600;
+            color: var(--gold);
+            margin: 2px 0 5px;
+        }
+
+        .item-desc {
+            font-size: 11.8px;
+            line-height: 1.55;
+            color: var(--text-muted);
+        }
+
+        .signature-area {
+            margin-top: auto;
+            display: flex;
+            justify-content: flex-end;
+            padding-top: 15px;
+        }
+
+        .sig-box {
+            text-align: center;
+            width: 150px;
+        }
+
+        .sig-line {
+            border-top: 1px solid var(--navy);
+            margin-bottom: 4px;
+        }
+
+        .sig-text {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--navy);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* Strict A4 Print Styles */
+        @media print {
+            @page {
+                size: A4 portrait;
+                margin: 0;
+            }
+            body {
+                background: none;
+                padding: 0;
+                margin: 0;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            .action-bar {
+                display: none !important;
+            }
+            .a4-page {
+                box-shadow: none;
+                margin: 0;
+                page-break-after: avoid;
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="action-bar">
+        <a href="index.html" class="btn btn-back">← Edit Information</a>
+        <div style="color: #94A3B8; font-size: 13px;">A4 Print-Ready Luxury Format</div>
+        <button onclick="window.print()" class="btn btn-print">🖨️ Print / Save as PDF</button>
+    </div>
+
+    <div class="a4-page" id="cvDocument">
+        <!-- Left Sidebar -->
+        <aside class="sidebar">
+            <div class="photo-frame">
+                <img id="outPhoto" src="https://via.placeholder.com/150x170/1E293B/D4AF37?text=PHOTO" alt="Profile Photo">
+            </div>
+
+            <div class="side-section">
+                <h3 class="side-title">Contact</h3>
+                <div class="contact-item">
+                    <span class="contact-label">Phone</span>
+                    <span id="outPhone"></span>
+                </div>
+                <div class="contact-item" id="emailBlock">
+                    <span class="contact-label">Email</span>
+                    <span id="outEmail"></span>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-label">Address</span>
+                    <span id="outAddress"></span>
+                </div>
+            </div>
+
+            <div class="side-section" id="skillsSection">
+                <h3 class="side-title">Skills</h3>
+                <ul class="side-list" id="outSkills"></ul>
+            </div>
+
+            <div class="side-section" id="languagesSection">
+                <h3 class="side-title">Languages</h3>
+                <ul class="side-list" id="outLanguages"></ul>
+            </div>
+
+            <div class="side-section" id="hobbiesSection" style="margin-bottom: 0;">
+                <h3 class="side-title">Hobbies</h3>
+                <ul class="side-list" id="outHobbies"></ul>
+            </div>
+        </aside>
+
+        <!-- Right Main Content -->
+        <main class="main-content">
+            <header class="header-box">
+                <h1 class="full-name" id="outName"></h1>
+                <div class="designation" id="outDesignation"></div>
+            </header>
+
+            <section class="main-section">
+                <h2 class="main-title">Executive Profile</h2>
+                <p class="summary-text" id="outProfile"></p>
+            </section>
+
+            <section class="main-section" id="experienceSection">
+                <h2 class="main-title">Work Experience</h2>
+                <div id="outExperience"></div>
+            </section>
+
+            <section class="main-section" id="objectiveSection">
+                <h2 class="main-title">Career Objective</h2>
+                <p class="summary-text" id="outObjective"></p>
+            </section>
+
+            <section class="main-section" id="educationSection">
+                <h2 class="main-title">Education</h2>
+                <div id="outEducation"></div>
+            </section>
+
+            <div class="signature-area">
+                <div class="sig-box">
+                    <div class="sig-line"></div>
+                    <div class="sig-text">Signature</div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        const rawData = localStorage.getItem('luxuryCVData');
+        if (!rawData) {
+            window.location.href = 'index.html';
+            return;
+        }
+
+        const data = JSON.parse(rawData);
+
+        // Basic Info
+        document.getElementById('outName').textContent = data.fullName || '';
+        document.getElementById('outDesignation').textContent = data.designation || '';
+        document.getElementById('outPhone').textContent = data.phone || '';
+        document.getElementById('outAddress').textContent = data.address || '';
+        document.getElementById('outProfile').textContent = data.profile || '';
+
+        if (data.email) {
+            document.getElementById('outEmail').textContent = data.email;
+        } else {
+            document.getElementById('emailBlock').style.display = 'none';
+        }
+
+        if (data.objective) {
+            document.getElementById('outObjective').textContent = data.objective;
+        } else {
+            document.getElementById('objectiveSection').style.display = 'none';
+        }
+
+        if (data.photo) {
+            document.getElementById('outPhoto').src = data.photo;
+        }
+
+        // Render Lists (Hide section if empty)
+        const renderList = (sectionId, elementId, items) => {
+            if (items && items.length > 0) {
+                const ul = document.getElementById(elementId);
+                ul.innerHTML = items.map(item => `<li>${item}</li>`).join('');
+            } else {
+                document.getElementById(sectionId).style.display = 'none';
+            }
+        };
+
+        renderList('skillsSection', 'outSkills', data.skills);
+        renderList('languagesSection', 'outLanguages', data.languages);
+        renderList('hobbiesSection', 'outHobbies', data.hobbies);
+
+        // Render Experience
+        const expContainer = document.getElementById('outExperience');
+        if (data.experiences && data.experiences.length > 0) {
+            expContainer.innerHTML = data.experiences.map(exp => `
+                <div class="timeline-item">
+                    <div class="item-title">${exp.role}</div>
+                    <div class="item-subtitle">${exp.company}</div>
+                    <div class="item-desc">${exp.desc}</div>
+                </div>
+            `).join('');
+        } else {
+            document.getElementById('experienceSection').style.display = 'none';
+        }
+
+        // Render Education
+        const eduContainer = document.getElementById('outEducation');
+        if (data.educations && data.educations.length > 0) {
+            eduContainer.innerHTML = data.educations.map(edu => `
+                <div class="timeline-item">
+                    <div class="item-title">${edu.degree}</div>
+                    <div class="item-subtitle">${edu.inst}</div>
+                </div>
+            `).join('');
+        } else {
+            document.getElementById('educationSection').style.display = 'none';
+        }
+    });
+</script>
+
+</body>
+</html>
